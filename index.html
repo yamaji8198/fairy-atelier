@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fairy Atelier | 妖精人形の世界</title>
+<meta name="description" content="ひとつひとつ手作りで生まれる妖精人形。森、星空、夢、おとぎ話の世界へ。">
+<style>
+:root{
+  --ivory:#fffaf2;
+  --pink:#e8b8c8;
+  --lav:#bda9d8;
+  --gold:#d8bd75;
+  --deep:#18251f;
+  --mist:rgba(255,255,255,.72);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:"Hiragino Mincho ProN","Yu Mincho",serif;
+  color:#4f4350;
+  background:
+    radial-gradient(circle at 20% 10%,rgba(255,255,255,.9),transparent 28%),
+    linear-gradient(180deg,#eaf8ff 0%,#fdf7fb 36%,#f3efe7 72%,#16241e 100%);
+  overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+nav{
+  position:fixed;top:0;left:0;width:100%;z-index:20;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:16px 6vw;
+  background:rgba(255,255,255,.4);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(255,255,255,.55);
+}
+.logo{font-size:1.15rem;letter-spacing:.16em}
+.navlinks{display:flex;gap:22px;font-size:.9rem}
+.hero{
+  min-height:100vh;
+  display:grid;place-items:center;
+  position:relative;
+  background:
+    linear-gradient(rgba(23,36,43,.10),rgba(64,41,62,.23)),
+    url("fairy_sky.jpeg") center/cover no-repeat;
+}
+.hero:after{
+  content:"";
+  position:absolute;inset:0;
+  background:linear-gradient(to bottom,transparent 55%,rgba(252,247,250,.98));
+}
+.hero-content{
+  position:relative;z-index:2;text-align:center;color:white;padding:32px;
+  text-shadow:0 3px 18px rgba(36,26,44,.55);
+}
+.kicker{letter-spacing:.35em;font-size:.85rem;margin-bottom:20px}
+h1{font-size:clamp(2.6rem,7vw,6.2rem);font-weight:400;line-height:1.08}
+.hero p{font-size:clamp(1rem,2vw,1.35rem);margin:26px auto 32px;max-width:720px}
+.btn{
+  display:inline-block;padding:14px 30px;border:1px solid white;border-radius:999px;
+  background:rgba(255,255,255,.13);backdrop-filter:blur(6px);
+}
+.sparkles span{
+  position:fixed;z-index:15;width:5px;height:5px;border-radius:50%;
+  background:white;box-shadow:0 0 12px white;
+  animation:float 8s linear infinite;opacity:.7;pointer-events:none;
+}
+@keyframes float{
+  from{transform:translateY(110vh) scale(.3)}
+  to{transform:translateY(-15vh) translateX(40px) scale(1.2)}
+}
+section{padding:100px 7vw}
+.intro{text-align:center;max-width:850px;margin:auto}
+.eyebrow{letter-spacing:.28em;color:#9a7890;font-size:.8rem;margin-bottom:16px}
+h2{font-weight:400;font-size:clamp(2rem,4vw,3.6rem);margin-bottom:24px}
+.intro p{font-size:1.08rem;line-height:2.1}
+.story{
+  display:grid;grid-template-columns:1.05fr .95fr;gap:7vw;align-items:center;
+}
+.story.reverse{grid-template-columns:.95fr 1.05fr}
+.photo{
+  min-height:620px;border-radius:240px 240px 26px 26px;
+  box-shadow:0 26px 60px rgba(67,45,62,.18);
+  background-size:cover;background-position:center;
+}
+.story-copy p{line-height:2;font-size:1.02rem}
+.forest{
+  color:#f7f1e9;
+  background:
+    radial-gradient(circle at 70% 30%,rgba(236,207,134,.20),transparent 18%),
+    linear-gradient(135deg,#17231d,#263a30);
+}
+.forest .eyebrow{color:#e7cf95}
+.forest .photo{box-shadow:0 30px 80px rgba(0,0,0,.35)}
+.whiteworld{background:linear-gradient(180deg,#fff,#f7eef5)}
+.seaworld{background:linear-gradient(180deg,#f7eef5,#eee5dc)}
+.gallery-title{text-align:center;margin-bottom:42px}
+.gallery{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:24px;max-width:1100px;margin:auto;
+}
+.card{
+  position:relative;overflow:hidden;border-radius:26px;min-height:500px;
+  background:#ddd center/cover no-repeat;box-shadow:0 18px 45px rgba(45,38,45,.14);
+}
+.card:after{
+  content:"";position:absolute;inset:0;background:linear-gradient(transparent 52%,rgba(19,17,21,.62));
+}
+.card span{position:absolute;z-index:2;left:28px;bottom:24px;color:white;font-size:1.25rem}
+.cta{
+  text-align:center;color:white;padding:130px 7vw;
+  background:
+    radial-gradient(circle at 50% 15%,rgba(255,236,181,.18),transparent 30%),
+    linear-gradient(180deg,#1b2d25,#101812);
+}
+.cta p{max-width:720px;margin:0 auto 28px;line-height:2}
+footer{text-align:center;padding:28px;background:#101812;color:#d8d1c8;font-size:.82rem}
+.reveal{opacity:0;transform:translateY(35px);transition:1s ease}
+.reveal.show{opacity:1;transform:none}
+@media(max-width:800px){
+  .navlinks{display:none}
+  .story,.story.reverse{grid-template-columns:1fr}
+  .photo{min-height:430px}
+  .gallery{grid-template-columns:1fr}
+  section{padding:76px 7vw}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">FAIRY ATELIER</div>
+  <div class="navlinks">
+    <a href="#story">Story</a>
+    <a href="#works">Works</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<div class="sparkles" aria-hidden="true">
+  <span style="left:8%;animation-delay:0s"></span>
+  <span style="left:20%;animation-delay:2s"></span>
+  <span style="left:34%;animation-delay:5s"></span>
+  <span style="left:51%;animation-delay:1s"></span>
+  <span style="left:68%;animation-delay:4s"></span>
+  <span style="left:82%;animation-delay:6s"></span>
+  <span style="left:94%;animation-delay:3s"></span>
+</div>
+
+<header class="hero">
+  <div class="hero-content">
+    <div class="kicker">WELCOME TO THE LITTLE FAIRY WORLD</div>
+    <h1>夢の扉の向こうに、<br>小さな妖精がいる。</h1>
+    <p>森の奥、月明かりの下、花びらの陰。<br>そこに本当に暮らしていそうな妖精たちを、ひとつひとつ手から生み出しています。</p>
+    <a class="btn" href="#story">妖精の世界へ</a>
+  </div>
+</header>
+
+<section id="story">
+  <div class="intro reveal">
+    <div class="eyebrow">ONCE UPON A TIME</div>
+    <h2>ここは、人形を「見る」だけの場所ではありません。</h2>
+    <p>
+      ページをめくるようにスクロールするたび、空から森へ、森から夢へ。
+      小さな妖精たちの物語へ迷い込むような世界を作りました。
+      ひとつとして同じ表情のない、手のひらほどの命。その気配を感じてください。
+    </p>
+  </div>
+</section>
+
+<section class="forest">
+  <div class="story">
+    <div class="photo reveal" style="background-image:url('fairy_forest.jpeg')"></div>
+    <div class="story-copy reveal">
+      <div class="eyebrow">THE FOREST FAIRY</div>
+      <h2>森が眠るころ、<br>妖精たちは目を覚ます。</h2>
+      <p>
+        木漏れ日、古い木の枝、小さな花の香り。
+        そんな自然の記憶から生まれた妖精です。
+        表情や衣装、しぐさまで、一体ごとに小さな物語を宿しています。
+      </p>
+    </div>
+  </div>
+</section>
+
+<section id="works" class="whiteworld">
+  <div class="story reverse">
+    <div class="story-copy reveal">
+      <div class="eyebrow">HANDMADE WITH A STORY</div>
+      <h2>白い夢の中から、<br>そっと生まれる。</h2>
+      <p>
+        繊細なレース、淡い色、髪の一筋まで。
+        ただ可愛いだけではなく、見る人が想像を膨らませられる余白を大切にしています。
+        それぞれの妖精には、それぞれの時間と物語があります。
+      </p>
+    </div>
+    <div class="photo reveal" style="background-image:url('fairy_white.jpeg')"></div>
+  </div>
+</section>
+
+<section class="seaworld">
+  <div class="story">
+    <div class="photo reveal" style="background-image:url('fairy_sea.jpeg');background-position:center 35%"></div>
+    <div class="story-copy reveal">
+      <div class="eyebrow">FAIRY OF THE SEA</div>
+      <h2>海辺で眠る、<br>小さな秘密。</h2>
+      <p>
+        貝殻のそば、波の音が届く場所。
+        人魚のような妖精は、まだ誰も知らない夢を見ています。
+        ファンタジーと現実の境界が曖昧になる、その一瞬を人形に閉じ込めます。
+      </p>
+    </div>
+  </div>
+</section>
+
+<section id="gallery">
+  <div class="gallery-title reveal">
+    <div class="eyebrow">GALLERY</div>
+    <h2>妖精たちの肖像</h2>
+  </div>
+  <div class="gallery">
+    <div class="card reveal" style="background-image:url('fairy_sky.jpeg')"><span>空の旅人</span></div>
+    <div class="card reveal" style="background-image:url('fairy_forest.jpeg')"><span>森の微笑み</span></div>
+    <div class="card reveal" style="background-image:url('fairy_white.jpeg')"><span>白い夢</span></div>
+    <div class="card reveal" style="background-image:url('fairy_sea.jpeg')"><span>海辺の眠り</span></div>
+  </div>
+</section>
+
+<section id="contact" class="cta">
+  <div class="reveal">
+    <div class="eyebrow">FROM THE FAIRY ATELIER</div>
+    <h2>あなたのもとへ、<br>ひとりの妖精を。</h2>
+    <p>
+      作品についてのお問い合わせ、展示・販売についてのご相談はこちらから。
+      この場所から、新しい物語が始まります。
+    </p>
+    <a class="btn" href="mailto:yourmail@example.com">お問い合わせ</a>
+  </div>
+</section>
+
+<footer>© 2026 FAIRY ATELIER — All Rights Reserved.</footer>
+
+<script>
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting) entry.target.classList.add('show');
+  });
+},{threshold:.12});
+reveals.forEach(el=>observer.observe(el));
+</script>
+</body>
+</html>
